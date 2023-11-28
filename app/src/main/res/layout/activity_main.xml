@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@color/fondo">
+
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="90dp"
+        android:background="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/imagen"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.483">
+
+    </ImageView>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/arrow_right_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageButton>
+
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="190dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPregunta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:background="@drawable/ic_launcher_background"></ImageView>
+
+    <TextView
+        android:id="@+id/tvPregunta"
+        android:layout_width="365dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="10dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="20dp"
+        android:text="Pregunta numero 1 "
+        android:textSize="28dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></TextView>
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:columnCount="1"
+        android:rowCount="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:backgroundTint="@color/azul"
+            android:text="hola"
+            android:textColor="@color/black"
+            android:textSize="20dp">
+        </Button>
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:backgroundTint="@color/amarillo"
+            android:textColor="@color/black"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:backgroundTint="@color/verde"
+            android:textColor="@color/black"
+            android:textSize="20dp"></Button>
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:backgroundTint="@color/rojo"
+            android:textColor="@color/black"
+            android:textSize="20dp"></Button>
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
