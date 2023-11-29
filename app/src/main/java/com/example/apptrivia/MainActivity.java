@@ -241,8 +241,11 @@ public class MainActivity extends AppCompatActivity {
                 aciertos[contaPregunta-1] = false;
             }
             pasarPregunta();
+        }else {
+            Intent i = new Intent(this, ResultadoActivity.class);
+            i.putExtra("preguntas",preguntasSeleccionadas);
+            startActivity(i);
         }
-        Intent i = new Intent(this, ResultadoActivity.class);
-        i.putExtra("preguntas",preguntasSeleccionadas);
+
     }
 }
