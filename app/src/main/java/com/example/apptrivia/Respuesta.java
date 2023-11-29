@@ -1,6 +1,8 @@
 package com.example.apptrivia;
 
-public class Respuesta {
+import java.io.Serializable;
+
+public class Respuesta implements Serializable {
     private String repuesta;
     private boolean correcta;
 
