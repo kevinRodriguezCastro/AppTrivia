@@ -1,6 +1,7 @@
 package com.example.apptrivia;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +40,9 @@ public class Adapter extends ArrayAdapter<Pregunta> {
         texto = (TextView) fila.findViewById(R.id.texto);
 
         if (p.isAcertada()){
-            fondo.setBackgroundColor();
+            fondo.setBackgroundColor(Color.GREEN);
         }else {
-            fondo.setBackgroundColor();
+            fondo.setBackgroundColor(Color.RED);
         }
 
         texto.setText(p.getPregunta());
