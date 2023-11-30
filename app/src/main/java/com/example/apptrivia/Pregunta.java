@@ -51,4 +51,12 @@ public class Pregunta implements Serializable {
     public void setImagen(int imagen) {
         this.imagen = imagen;
     }
+    public String getRespuestaCorrecta(){
+        for (Respuesta tmp:respuestas){
+            if (tmp.isCorrecta()){
+                return tmp.getRepuesta();
+            }
+        }
+        return null;
+    }
 }

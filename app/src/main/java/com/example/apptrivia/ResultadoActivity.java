@@ -3,6 +3,7 @@ package com.example.apptrivia;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,15 +16,19 @@ public class ResultadoActivity extends AppCompatActivity {
     Adapter adapter;
     Button btnVolver;
     ArrayList<Pregunta> preguntas;
+    boolean respuestas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
 
+        SharedPreferences prefs = getSharedPreferences("MiPreferencia", MODE_PRIVATE);
+        respuestas = prefs.getBoolean("respuestas", false);
+
         Intent extra = getIntent();
         preguntas =  (ArrayList<Pregunta>) extra.getSerializableExtra("preguntas");
 
-        adapter = new Adapter(this,preguntas);
+        adapter = new Adapter(this,preguntas,respuestas);
 
         lista = (ListView) findViewById(R.id.lista);
         lista.setAdapter(adapter);

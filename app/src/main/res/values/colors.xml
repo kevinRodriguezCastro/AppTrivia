@@ -7,6 +7,6 @@
     <color name="verde">#C1FF72</color>
     <color name="rojo">#CB6CE6</color>
     <color name="amarillo">#FF0F39</color>
-    <color name="acierto">#7BF600</color>
-    <color name="fallo">#FF0F39</color>
+    <color name="acierto">#58A110</color>
+    <color name="fallo">#980000</color>
 </resources>

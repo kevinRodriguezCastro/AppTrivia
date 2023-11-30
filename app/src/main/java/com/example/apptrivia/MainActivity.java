@@ -1,9 +1,16 @@
 package com.example.apptrivia;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
     private final int nPreguntas = 10;
@@ -26,12 +34,26 @@ public class MainActivity extends AppCompatActivity {
     private TextView pregunta;
     private ImageView img;
     private Button btn1,btn2,btn3,btn4;
+    private Toolbar toolbar;
+
+    private boolean random,respuestas,tiempo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        SharedPreferences prefs = getSharedPreferences("MiPreferencia", MODE_PRIVATE);
+        random = prefs.getBoolean("random", false);
+        respuestas = prefs.getBoolean("respuestas", false);
+
+
         rellenaPreguntas();
         seleccionarPregunta();
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         pregunta = (TextView) findViewById(R.id.tvPregunta);
         img = (ImageView) findViewById(R.id.imagen);
@@ -250,5 +272,21 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.opciones){
+            Intent i = new Intent(this, OpcionesActivity.class);
+            startActivity(i);
+        }
+        return true;
     }
 }
