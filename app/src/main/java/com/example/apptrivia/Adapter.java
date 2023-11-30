@@ -54,7 +54,7 @@ public class Adapter extends ArrayAdapter<Pregunta> {
         }
 
         if (respuestas){
-            texto.setText(p.getPregunta()+" Respuesta: "+p.getRespuestaCorrecta());
+            texto.setText(p.getPregunta()+"\nRespuesta: "+p.getRespuestaCorrecta());
         }else {
             texto.setText(p.getPregunta());
         }

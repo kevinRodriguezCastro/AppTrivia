@@ -24,17 +24,17 @@ public class OpcionesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(v.getContext(), MainActivity.class);
                 SharedPreferences.Editor editor = getSharedPreferences("MiPreferencia", MODE_PRIVATE).edit();
-                editor.putBoolean("random", random.isActivated());
-                editor.putBoolean("respuestas", respuestas.isSelected());
-                Log.d("OpcionesActivity",""+respuestas.isSelected());
-                editor.putBoolean("tiempo", tiempo.isSelected());
+                editor.putBoolean("random", random.isChecked());
+                editor.putBoolean("respuestas", respuestas.isChecked());
+                Log.d("OpcionesActivity",""+respuestas.isChecked());
+                editor.putBoolean("tiempo", tiempo.isChecked());
                 editor.apply();
                 startActivity(i);
             }
         });
 
-        random = (Switch) findViewById(R.id.switch1);
-        respuestas = (Switch) findViewById(R.id.switch2);
-        tiempo = (Switch) findViewById(R.id.switch3);
+        random = (Switch) findViewById(R.id.swRandom);
+        respuestas = (Switch) findViewById(R.id.swRespuestas);
+        tiempo = (Switch) findViewById(R.id.swTiempo);
     }
 }
