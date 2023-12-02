@@ -7,10 +7,26 @@
     android:orientation="vertical"
     tools:context=".MainActivity"
     android:background="@color/fondo">
+
     <include
         android:id="@+id/toolbar"
-        layout="@layout/layout_menu"
-        />
+        layout="@layout/layout_menu" />
+
+    <TextView
+        android:id="@+id/tvContador"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="172dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPregunta"
+        app:layout_constraintEnd_toStartOf="@+id/imagen"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.921">
+
+    </TextView>
 
     <ImageView
         android:layout_width="180dp"

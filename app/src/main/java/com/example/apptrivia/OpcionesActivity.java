@@ -13,10 +13,16 @@ import android.widget.Switch;
 public class OpcionesActivity extends AppCompatActivity {
     private Button btnVolver;
     private Switch random,respuestas,tiempo;
+    private boolean opcRandom,opcRespuestas,opcTiempo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opciones);
+
+        SharedPreferences prefs = getSharedPreferences("MiPreferencia", MODE_PRIVATE);
+        opcRandom = prefs.getBoolean("random", false);
+        opcTiempo = prefs.getBoolean("tiempo", true);
+        opcRespuestas = prefs.getBoolean("respuestas", false);
 
         btnVolver = (Button) findViewById(R.id.btnVolverOpciones);
         btnVolver.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +40,18 @@ public class OpcionesActivity extends AppCompatActivity {
         });
 
         random = (Switch) findViewById(R.id.swRandom);
+        if (opcRandom){
+            random.setChecked(true);
+        }
+
         respuestas = (Switch) findViewById(R.id.swRespuestas);
+        if (opcRespuestas){
+            respuestas.setChecked(true);
+        }
+
         tiempo = (Switch) findViewById(R.id.swTiempo);
+        if (opcTiempo){
+            tiempo.setChecked(true);
+        }
     }
 }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,11 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean[] aciertos = new boolean[nPreguntas];
     private int contaPregunta = 0;
-    private TextView pregunta;
+    private TextView pregunta,tvContador;
     private ImageView img;
     private Button btn1,btn2,btn3,btn4;
     private Toolbar toolbar;
-
+    private CountDownTimer timer;
     private boolean random,respuestas,tiempo;
 
     @Override
@@ -43,10 +44,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tvContador = (TextView) findViewById(R.id.tvContador);
 
         SharedPreferences prefs = getSharedPreferences("MiPreferencia", MODE_PRIVATE);
         random = prefs.getBoolean("random", false);
-        respuestas = prefs.getBoolean("respuestas", false);
+        tiempo = prefs.getBoolean("tiempo", false);
+
+        if(tiempo){
+            timer = new CountDownTimer(10000, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    // Este método se llama cada segundo (1000 milisegundos)
+                    long segundosRestantes = millisUntilFinished / 1000;
+                    tvContador.setText(""+segundosRestantes);
+                }
+
+                @Override
+                public void onFinish() {
+                    // Este método se llama cuando el temporizador llega a cero
+                    preguntasSeleccionadas.get(contaPregunta).setAcertada(false);
+                    contaPregunta++;
+                    pasarPregunta();
+                }
+            };
+        }
 
 
         rellenaPreguntas();
@@ -246,13 +267,20 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Respuesta> tmp;
             pregunta.setText(contaPregunta+1 +"- "+ preguntasSeleccionadas.get(contaPregunta).getPregunta());
             tmp = preguntasSeleccionadas.get(contaPregunta).getRespuestas();
-            ordenRespuestas(tmp);
+
+            if(random){ // ordena solo las respuestas
+                ordenRespuestas(tmp);
+            }
 
             img.setImageResource(preguntasSeleccionadas.get(contaPregunta).getImagen());
             btn1.setText(tmp.get(0).getRepuesta());
             btn2.setText(tmp.get(1).getRepuesta());
             btn3.setText(tmp.get(2).getRepuesta());
             btn4.setText(tmp.get(3).getRepuesta());
+
+            if (tiempo){
+                timer.start();
+            }
         }
     }
     private void contestar(int indiceBoton){
