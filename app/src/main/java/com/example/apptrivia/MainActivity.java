@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         tiempo = prefs.getBoolean("tiempo", false);
 
         if(tiempo){
-            timer = new CountDownTimer(10000, 1000) {
+            timer = new CountDownTimer(15000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     // Este método se llama cada segundo (1000 milisegundos)
@@ -63,8 +63,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onFinish() {
                     // Este método se llama cuando el temporizador llega a cero
                     preguntasSeleccionadas.get(contaPregunta).setAcertada(false);
-                    contaPregunta++;
-                    pasarPregunta();
+                    if(contaPregunta<9){
+                        contaPregunta++;
+                        pasarPregunta();
+                    }else {
+                        cambiarActivityRespuestas();
+                    }
                 }
             };
         }
@@ -284,7 +288,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void contestar(int indiceBoton){
-        if (contaPregunta<9){
+        timer.cancel();
+        if (contaPregunta<10){
             if (preguntasSeleccionadas.get(contaPregunta).getRespuestas().get(indiceBoton).isCorrecta()){
 
                 preguntasSeleccionadas.get(contaPregunta).setAcertada(true);
@@ -292,12 +297,15 @@ public class MainActivity extends AppCompatActivity {
 
                 preguntasSeleccionadas.get(contaPregunta).setAcertada(false);
             }
+            if(contaPregunta == 9){
+                Intent i = new Intent(this, ResultadoActivity.class);
+                i.putExtra("preguntas",preguntasSeleccionadas);
+                startActivity(i);
+            }
             contaPregunta++;
             pasarPregunta();
         }else {
-            Intent i = new Intent(this, ResultadoActivity.class);
-            i.putExtra("preguntas",preguntasSeleccionadas);
-            startActivity(i);
+
         }
 
     }
@@ -316,5 +324,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         }
         return true;
+    }
+    private void cambiarActivityRespuestas(){
+        Intent i = new Intent(this, ResultadoActivity.class);
+        i.putExtra("preguntas",preguntasSeleccionadas);
+        startActivity(i);
     }
 }
