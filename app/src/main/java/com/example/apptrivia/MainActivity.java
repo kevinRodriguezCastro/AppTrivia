@@ -288,7 +288,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void contestar(int indiceBoton){
-        timer.cancel();
+        if(tiempo){
+            timer.cancel();
+        }
         if (contaPregunta<10){
             if (preguntasSeleccionadas.get(contaPregunta).getRespuestas().get(indiceBoton).isCorrecta()){
 
@@ -302,12 +304,11 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("preguntas",preguntasSeleccionadas);
                 startActivity(i);
             }
-            contaPregunta++;
-            pasarPregunta();
-        }else {
-
+            if(contaPregunta<9){
+                contaPregunta++;
+                pasarPregunta();
+            }
         }
-
     }
 
     @Override
